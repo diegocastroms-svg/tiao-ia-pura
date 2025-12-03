@@ -15,12 +15,12 @@ PG_DB   = "tiao_ia_db"
 
 def create_database():
     conn = psycopg2.connect(
-    host=PG_HOST,
-    port=PG_PORT,
-    user=PG_USER,
-    password=PG_PASS,
-    sslmode="require"
-)
+        host=PG_HOST,
+        port=PG_PORT,
+        user=PG_USER,
+        password=PG_PASS,
+        sslmode="require"
+    )
 
     conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
     cur = conn.cursor()
@@ -39,12 +39,12 @@ def create_database():
 
 def create_tables():
     conn = psycopg2.connect(
-    host=PG_HOST,
-    port=PG_PORT,
-    user=PG_USER,
-    password=PG_PASS,
-    sslmode="require"
-)
+        host=PG_HOST,
+        port=PG_PORT,
+        user=PG_USER,
+        password=PG_PASS,
+        sslmode="require"
+    )
 
     cur = conn.cursor()
 
@@ -126,7 +126,8 @@ def create_tables():
 
     print("[TIÃO] Tabelas criadas com sucesso.")
 
-if __name__ == "__main__" 
+# 🔥 CORREÇÃO AQUI (só isso)
+if __name__ == "__main__":
     create_tables()
 
 
