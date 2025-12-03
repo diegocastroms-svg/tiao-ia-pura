@@ -10,32 +10,8 @@ import os
 PG_HOST = "dpg-d4ob2p8gjchc73elo7k0-a.frankfurt-postgres.render.com"
 PG_PORT = "5432"
 PG_USER = "tiao_ia_db_user"
-PG_PASS = os.getenv("PG_PASS")  # A senha será colocada no Render
+PG_PASS = os.getenv("PG_PASS")
 PG_DB   = "tiao_ia_db"
-
-def create_database():
-    conn = psycopg2.connect(
-        host=PG_HOST,
-        port=PG_PORT,
-        user=PG_USER,
-        password=PG_PASS,
-        sslmode="require"
-    )
-
-    conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
-    cur = conn.cursor()
-
-    cur.execute("SELECT 1 FROM pg_database WHERE datname = %s", (PG_DB,))
-    exists = cur.fetchone()
-
-    if not exists:
-        cur.execute(f"CREATE DATABASE {PG_DB}")
-        print(f"[TIÃO] Banco '{PG_DB}' criado.")
-    else:
-        print(f"[TIÃO] Banco '{PG_DB}' já existe.")
-
-    cur.close()
-    conn.close()
 
 def create_tables():
     conn = psycopg2.connect(
@@ -43,6 +19,7 @@ def create_tables():
         port=PG_PORT,
         user=PG_USER,
         password=PG_PASS,
+        dbname=PG_DB,            # <-- AQUI!!
         sslmode="require"
     )
 
@@ -126,8 +103,5 @@ def create_tables():
 
     print("[TIÃO] Tabelas criadas com sucesso.")
 
-# 🔥 CORREÇÃO AQUI (só isso)
 if __name__ == "__main__":
     create_tables()
-
-
