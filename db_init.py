@@ -15,11 +15,13 @@ PG_DB   = "tiao_ia_db"
 
 def create_database():
     conn = psycopg2.connect(
-        host=PG_HOST,
-        port=PG_PORT,
-        user=PG_USER,
-        password=PG_PASS
-    )
+    host=PG_HOST,
+    port=PG_PORT,
+    user=PG_USER,
+    password=PG_PASS,
+    sslmode="require"
+)
+
     conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
     cur = conn.cursor()
 
@@ -37,12 +39,13 @@ def create_database():
 
 def create_tables():
     conn = psycopg2.connect(
-        host=PG_HOST,
-        port=PG_PORT,
-        user=PG_USER,
-        password=PG_PASS,
-        dbname=PG_DB
-    )
+    host=PG_HOST,
+    port=PG_PORT,
+    user=PG_USER,
+    password=PG_PASS,
+    sslmode="require"
+)
+
     cur = conn.cursor()
 
     # Candles da Binance
@@ -126,3 +129,4 @@ def create_tables():
 if __name__ == "__main__":
     create_database()
     create_tables()
+
