@@ -126,7 +126,7 @@ def create_tables():
 
     print("[TIÃO] Tabelas criadas com sucesso.")
 
-if __name__ == "__main__":
-    create_database()
+if __name__ == "__main__" 
     create_tables()
+
 
